@@ -12,10 +12,10 @@ namespace MT
 {
     public partial class frmTransiciones : Form
     {
-        public List<Transicion> ListaTransiciones;
-        public frmTransiciones( List<Transicion> listaTransiciones)
+        public Maquina maquina;
+        public frmTransiciones( Maquina m)
         {
-            this.ListaTransiciones = listaTransiciones;
+            this.maquina = m;
             InitializeComponent();
         }
 
