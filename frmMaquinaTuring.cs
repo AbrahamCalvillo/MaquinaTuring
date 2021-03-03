@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace MT
 {
-    public partial class Form1 : Form
+    public partial class frmMaquinaTuring : Form
     {
-        public Form1()
+        public frmMaquinaTuring()
         {
             InitializeComponent();
         }
+
+       
     }
 }
