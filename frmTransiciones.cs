@@ -12,9 +12,16 @@ namespace MT
 {
     public partial class frmTransiciones : Form
     {
-        public frmTransiciones()
+        public List<Transicion> ListaTransiciones;
+        public frmTransiciones( List<Transicion> listaTransiciones)
         {
+            this.ListaTransiciones = listaTransiciones;
             InitializeComponent();
+        }
+
+        private void frmTransiciones_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

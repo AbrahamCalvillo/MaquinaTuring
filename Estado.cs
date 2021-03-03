@@ -8,8 +8,7 @@ namespace MT
 {
     public class Estado:IEquatable<Estado>
     {
-        public int numero { get; set; }
-        public List<Transicion> Transiciones { get; set; }
-        public bool Equals(Estado e) => this.numero == e.numero;
+        public string Etiqueta { get; set; }
+        public bool Equals(Estado e) => this.etiqueta == e.etiqueta;
     }
 }

@@ -31,19 +31,19 @@ namespace MT
         {
             this.dgTransiciones = new System.Windows.Forms.DataGridView();
             this.grpTransiciones = new System.Windows.Forms.GroupBox();
-            this.cmbEstado = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.cmbEstadoSiguiente = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbSimboloLeido = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cmbOperacion = new System.Windows.Forms.ComboBox();
+            this.btnEditarTransicion = new System.Windows.Forms.Button();
+            this.btnEliminarTransicion = new System.Windows.Forms.Button();
+            this.btnAgregarTransicion = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbMovimiento = new System.Windows.Forms.ComboBox();
-            this.btnAgregarTransicion = new System.Windows.Forms.Button();
-            this.btnEliminarTransicion = new System.Windows.Forms.Button();
-            this.btnEditarTransicion = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbOperacion = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbSimboloLeido = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbEstadoSiguiente = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmbEstado = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgTransiciones)).BeginInit();
             this.grpTransiciones.SuspendLayout();
             this.SuspendLayout();
@@ -78,73 +78,32 @@ namespace MT
             this.grpTransiciones.TabStop = false;
             this.grpTransiciones.Text = "Transiciones";
             // 
-            // cmbEstado
+            // btnEditarTransicion
             // 
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(21, 44);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(121, 21);
-            this.cmbEstado.TabIndex = 0;
+            this.btnEditarTransicion.Location = new System.Drawing.Point(21, 352);
+            this.btnEditarTransicion.Name = "btnEditarTransicion";
+            this.btnEditarTransicion.Size = new System.Drawing.Size(121, 23);
+            this.btnEditarTransicion.TabIndex = 12;
+            this.btnEditarTransicion.Text = "Editar";
+            this.btnEditarTransicion.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // btnEliminarTransicion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(43, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Estado ";
+            this.btnEliminarTransicion.Location = new System.Drawing.Point(21, 383);
+            this.btnEliminarTransicion.Name = "btnEliminarTransicion";
+            this.btnEliminarTransicion.Size = new System.Drawing.Size(121, 23);
+            this.btnEliminarTransicion.TabIndex = 11;
+            this.btnEliminarTransicion.Text = "Eliminar";
+            this.btnEliminarTransicion.UseVisualStyleBackColor = true;
             // 
-            // label2
+            // btnAgregarTransicion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 233);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Estado Siguiente";
-            // 
-            // cmbEstadoSiguiente
-            // 
-            this.cmbEstadoSiguiente.FormattingEnabled = true;
-            this.cmbEstadoSiguiente.Location = new System.Drawing.Point(21, 252);
-            this.cmbEstadoSiguiente.Name = "cmbEstadoSiguiente";
-            this.cmbEstadoSiguiente.Size = new System.Drawing.Size(121, 21);
-            this.cmbEstadoSiguiente.TabIndex = 2;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 79);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Simbolo leido";
-            // 
-            // cmbSimboloLeido
-            // 
-            this.cmbSimboloLeido.FormattingEnabled = true;
-            this.cmbSimboloLeido.Location = new System.Drawing.Point(21, 98);
-            this.cmbSimboloLeido.Name = "cmbSimboloLeido";
-            this.cmbSimboloLeido.Size = new System.Drawing.Size(121, 21);
-            this.cmbSimboloLeido.TabIndex = 4;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 127);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Operacion";
-            // 
-            // cmbOperacion
-            // 
-            this.cmbOperacion.FormattingEnabled = true;
-            this.cmbOperacion.Location = new System.Drawing.Point(21, 146);
-            this.cmbOperacion.Name = "cmbOperacion";
-            this.cmbOperacion.Size = new System.Drawing.Size(121, 21);
-            this.cmbOperacion.TabIndex = 6;
+            this.btnAgregarTransicion.Location = new System.Drawing.Point(21, 321);
+            this.btnAgregarTransicion.Name = "btnAgregarTransicion";
+            this.btnAgregarTransicion.Size = new System.Drawing.Size(121, 23);
+            this.btnAgregarTransicion.TabIndex = 10;
+            this.btnAgregarTransicion.Text = "Agregar";
+            this.btnAgregarTransicion.UseVisualStyleBackColor = true;
             // 
             // label5
             // 
@@ -163,32 +122,73 @@ namespace MT
             this.cmbMovimiento.Size = new System.Drawing.Size(121, 21);
             this.cmbMovimiento.TabIndex = 8;
             // 
-            // btnAgregarTransicion
+            // label4
             // 
-            this.btnAgregarTransicion.Location = new System.Drawing.Point(21, 321);
-            this.btnAgregarTransicion.Name = "btnAgregarTransicion";
-            this.btnAgregarTransicion.Size = new System.Drawing.Size(121, 23);
-            this.btnAgregarTransicion.TabIndex = 10;
-            this.btnAgregarTransicion.Text = "Agregar";
-            this.btnAgregarTransicion.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 127);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "Operacion";
             // 
-            // btnEliminarTransicion
+            // cmbOperacion
             // 
-            this.btnEliminarTransicion.Location = new System.Drawing.Point(21, 383);
-            this.btnEliminarTransicion.Name = "btnEliminarTransicion";
-            this.btnEliminarTransicion.Size = new System.Drawing.Size(121, 23);
-            this.btnEliminarTransicion.TabIndex = 11;
-            this.btnEliminarTransicion.Text = "Eliminar";
-            this.btnEliminarTransicion.UseVisualStyleBackColor = true;
+            this.cmbOperacion.FormattingEnabled = true;
+            this.cmbOperacion.Location = new System.Drawing.Point(21, 146);
+            this.cmbOperacion.Name = "cmbOperacion";
+            this.cmbOperacion.Size = new System.Drawing.Size(121, 21);
+            this.cmbOperacion.TabIndex = 6;
             // 
-            // btnEditarTransicion
+            // label3
             // 
-            this.btnEditarTransicion.Location = new System.Drawing.Point(21, 352);
-            this.btnEditarTransicion.Name = "btnEditarTransicion";
-            this.btnEditarTransicion.Size = new System.Drawing.Size(121, 23);
-            this.btnEditarTransicion.TabIndex = 12;
-            this.btnEditarTransicion.Text = "Editar";
-            this.btnEditarTransicion.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 79);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Simbolo leido";
+            // 
+            // cmbSimboloLeido
+            // 
+            this.cmbSimboloLeido.FormattingEnabled = true;
+            this.cmbSimboloLeido.Location = new System.Drawing.Point(21, 98);
+            this.cmbSimboloLeido.Name = "cmbSimboloLeido";
+            this.cmbSimboloLeido.Size = new System.Drawing.Size(121, 21);
+            this.cmbSimboloLeido.TabIndex = 4;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 233);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Estado Siguiente";
+            // 
+            // cmbEstadoSiguiente
+            // 
+            this.cmbEstadoSiguiente.FormattingEnabled = true;
+            this.cmbEstadoSiguiente.Location = new System.Drawing.Point(21, 252);
+            this.cmbEstadoSiguiente.Name = "cmbEstadoSiguiente";
+            this.cmbEstadoSiguiente.Size = new System.Drawing.Size(121, 21);
+            this.cmbEstadoSiguiente.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(21, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(43, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Estado ";
+            // 
+            // cmbEstado
+            // 
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(21, 44);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(121, 21);
+            this.cmbEstado.TabIndex = 0;
             // 
             // frmTransiciones
             // 
@@ -199,6 +199,7 @@ namespace MT
             this.Controls.Add(this.dgTransiciones);
             this.Name = "frmTransiciones";
             this.Text = "Transiciones";
+            this.Load += new System.EventHandler(this.frmTransiciones_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgTransiciones)).EndInit();
             this.grpTransiciones.ResumeLayout(false);
             this.grpTransiciones.PerformLayout();

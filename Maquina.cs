@@ -11,10 +11,10 @@ namespace MT
         public char[] Alfabeto { get; set; }
         public List<Estado> Estados { get; set; }
         public List<Cadena> ConfiguracionCadena { get; set; }
+        public List<Transicion> ListaTransiciones { get; set; }
         public char EspacioBlanco { get; set; }
-        public int EstadoInicial { get; set; }
-        public int EstadoFinal { get; set; }
-
+        public string EstadoInicial { get; set; }
+        public string EstadoFinal { get; set; }            
         public string AgregarEstado(Estado e)
         {
             string msg = "";
@@ -45,9 +45,9 @@ namespace MT
         }
         public string AgregarTransicion(Estado e, Transicion t) {
             string msg = "";
-            if (Estados.Contains(e)&& !e.Transiciones.Contains(t))
+            if (Estados.Contains(e)&& !ListaTransiciones.Contains(t))
             {
-                Estados.ElementAt(Estados.IndexOf(e)).Transiciones.Add(t);
+                ListaTransiciones.Add(t);
                 msg = "Ok";
             }
             else

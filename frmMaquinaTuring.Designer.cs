@@ -44,6 +44,7 @@ namespace MT
             this.btnEjecutarMaquina = new System.Windows.Forms.Button();
             this.btnModificarCadena = new System.Windows.Forms.Button();
             this.btnEliminarMaquina = new System.Windows.Forms.Button();
+            this.txtEstado = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpCadena.SuspendLayout();
@@ -65,6 +66,7 @@ namespace MT
             this.btnGuardarAlfabeto.TabIndex = 2;
             this.btnGuardarAlfabeto.Text = "Guardar";
             this.btnGuardarAlfabeto.UseVisualStyleBackColor = true;
+            this.btnGuardarAlfabeto.Click += new System.EventHandler(this.btnGuardarAlfabeto_Click);
             // 
             // groupBox1
             // 
@@ -79,6 +81,7 @@ namespace MT
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtEstado);
             this.groupBox2.Controls.Add(this.btnTransiciones);
             this.groupBox2.Controls.Add(this.btnEliminarEstado);
             this.groupBox2.Controls.Add(this.lstEstados);
@@ -98,12 +101,13 @@ namespace MT
             this.btnTransiciones.TabIndex = 3;
             this.btnTransiciones.Text = "Ver Transiciones";
             this.btnTransiciones.UseVisualStyleBackColor = true;
+            this.btnTransiciones.Click += new System.EventHandler(this.btnTransiciones_Click);
             // 
             // btnEliminarEstado
             // 
-            this.btnEliminarEstado.Location = new System.Drawing.Point(142, 252);
+            this.btnEliminarEstado.Location = new System.Drawing.Point(171, 252);
             this.btnEliminarEstado.Name = "btnEliminarEstado";
-            this.btnEliminarEstado.Size = new System.Drawing.Size(109, 23);
+            this.btnEliminarEstado.Size = new System.Drawing.Size(80, 23);
             this.btnEliminarEstado.TabIndex = 2;
             this.btnEliminarEstado.Text = "Eliminar";
             this.btnEliminarEstado.UseVisualStyleBackColor = true;
@@ -118,12 +122,13 @@ namespace MT
             // 
             // btnAgregarEstado
             // 
-            this.btnAgregarEstado.Location = new System.Drawing.Point(16, 252);
+            this.btnAgregarEstado.Location = new System.Drawing.Point(90, 252);
             this.btnAgregarEstado.Name = "btnAgregarEstado";
-            this.btnAgregarEstado.Size = new System.Drawing.Size(109, 23);
+            this.btnAgregarEstado.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarEstado.TabIndex = 1;
             this.btnAgregarEstado.Text = "Agregar";
             this.btnAgregarEstado.UseVisualStyleBackColor = true;
+            this.btnAgregarEstado.Click += new System.EventHandler(this.btnAgregarEstado_Click);
             // 
             // grpCadena
             // 
@@ -168,6 +173,7 @@ namespace MT
             this.btnEjecutarMaquina.TabIndex = 7;
             this.btnEjecutarMaquina.Text = "Ejecutar";
             this.btnEjecutarMaquina.UseVisualStyleBackColor = true;
+            this.btnEjecutarMaquina.Click += new System.EventHandler(this.btnEjecutarMaquina_Click);
             // 
             // btnModificarCadena
             // 
@@ -187,6 +193,13 @@ namespace MT
             this.btnEliminarMaquina.Text = "Eliminar Maquina";
             this.btnEliminarMaquina.UseVisualStyleBackColor = true;
             // 
+            // txtEstado
+            // 
+            this.txtEstado.Location = new System.Drawing.Point(17, 252);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(67, 20);
+            this.txtEstado.TabIndex = 4;
+            // 
             // frmMaquinaTuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -204,6 +217,7 @@ namespace MT
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.grpCadena.ResumeLayout(false);
             this.grpCadena.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -228,6 +242,7 @@ namespace MT
         private System.Windows.Forms.Button btnEjecutarMaquina;
         private System.Windows.Forms.Button btnModificarCadena;
         private System.Windows.Forms.Button btnEliminarMaquina;
+        private System.Windows.Forms.TextBox txtEstado;
     }
 }
 
