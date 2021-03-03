@@ -44,7 +44,12 @@ namespace MT
 
         private void btnTransiciones_Click(object sender, EventArgs e)
         {
+<<<<<<< HEAD
+            frmTransiciones frmTransiciones = new frmTransiciones();
+            Console.WriteLine("A ver");
+=======
             frmTransiciones frmTransiciones = new frmTransiciones(m:maquina);
+>>>>>>> main
             frmTransiciones.Show();
         }
 

@@ -21,7 +21,6 @@ namespace MT
 
         private void frmTransiciones_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
