@@ -53,17 +53,15 @@
     <Compile Include="frmMaquinaTuring.Designer.cs">
       <DependentUpon>frmMaquinaTuring.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maquina.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Maquina.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transicion.cs" />
-    <Compile Include="Transiciones.cs">
+    <Compile Include="frmTransiciones.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transiciones.Designer.cs">
-      <DependentUpon>Transiciones.cs</DependentUpon>
+    <Compile Include="frmTransiciones.Designer.cs">
+      <DependentUpon>frmTransiciones.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmMaquinaTuring.resx">
       <DependentUpon>frmMaquinaTuring.cs</DependentUpon>
@@ -77,8 +75,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Transiciones.resx">
-      <DependentUpon>Transiciones.cs</DependentUpon>
+    <EmbeddedResource Include="frmTransiciones.resx">
+      <DependentUpon>frmTransiciones.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
