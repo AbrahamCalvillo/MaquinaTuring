@@ -1,20 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace MT
 {
     public class Maquina
     {
+        public Maquina()
+        {
+            Estados = new List<Estado>();
+            Movimientos = new List<Movimiento>();
+            ListaTransiciones = new List<Transicion>();
+            EspacioBlanco = 'ß';
+            Marca = '*';
+        }
         public char[] Alfabeto { get; set; }
         public List<Estado> Estados { get; set; }
-        public List<Cadena> ConfiguracionCadena { get; set; }
+        public List<Movimiento> Movimientos { get; set; }
         public List<Transicion> ListaTransiciones { get; set; }
         public char EspacioBlanco { get; set; }
+        public char Marca { get; set; }
+        public int PosicionInicial { get; set; }
         public string EstadoInicial { get; set; }
-        public string EstadoFinal { get; set; }            
+        public string EstadoFinal { get; set; }
+        public string Cadena { get; set; }
         public string AgregarEstado(Estado e)
         {
             string msg = "";
@@ -34,6 +41,7 @@ namespace MT
             string msg = "";
             if (Estados.Contains(e))
             {
+                ListaTransiciones.RemoveAll(t => t.q.Equals(e.Etiqueta) || t.p.Equals(e.Etiqueta));
                 Estados.Remove(e);
                 msg = "Ok";
             }
@@ -43,16 +51,31 @@ namespace MT
             }
             return msg;
         }
-        public string AgregarTransicion(Estado e, Transicion t) {
+        public string AgregarTransicion(Estado e, Transicion t)
+        {
             string msg = "";
-            if (Estados.Contains(e)&& !ListaTransiciones.Contains(t))
+            if (Estados.Contains(e) && !ListaTransiciones.Contains(t))
             {
                 ListaTransiciones.Add(t);
                 msg = "Ok";
             }
             else
             {
-                msg = "Error al eliminar el estado";
+                msg = "Error al agregar la transicion";
+            }
+            return msg;
+        }
+        public string EliminarTransicion(Estado e, Transicion t)
+        {
+            string msg = "";
+            if (Estados.Contains(e) && !ListaTransiciones.Contains(t))
+            {
+                ListaTransiciones.Remove(t);
+                msg = "Ok";
+            }
+            else
+            {
+                msg = "Error al eliminar la transicion";
             }
             return msg;
         }

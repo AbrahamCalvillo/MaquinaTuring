@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MT
 {
-    public class Cadena:IEquatable<Cadena>
+    public class Movimiento : IEquatable<Movimiento>
     {
         public int paso { get; set; }
         public string cadena { get; set; }
-        public bool Equals(Cadena c) => this.paso == c.paso;
+        public Transicion transicion { get; set; }
+        public int PosicionCabezal { get; set; }
+        public bool Equals(Movimiento m) => this.paso == m.paso;
     }
 }

@@ -32,7 +32,8 @@ namespace MT
             this.txtAlfabeto = new System.Windows.Forms.TextBox();
             this.btnGuardarAlfabeto = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.grpEstados = new System.Windows.Forms.GroupBox();
+            this.txtEstado = new System.Windows.Forms.TextBox();
             this.btnTransiciones = new System.Windows.Forms.Button();
             this.btnEliminarEstado = new System.Windows.Forms.Button();
             this.lstEstados = new System.Windows.Forms.ListBox();
@@ -40,15 +41,15 @@ namespace MT
             this.grpCadena = new System.Windows.Forms.GroupBox();
             this.btnGuardarCadena = new System.Windows.Forms.Button();
             this.txtCadena = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgMovimiento = new System.Windows.Forms.DataGridView();
             this.btnEjecutarMaquina = new System.Windows.Forms.Button();
             this.btnModificarCadena = new System.Windows.Forms.Button();
             this.btnEliminarMaquina = new System.Windows.Forms.Button();
-            this.txtEstado = new System.Windows.Forms.TextBox();
+            this.lblInfoAlfabeto = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.grpEstados.SuspendLayout();
             this.grpCadena.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMovimiento)).BeginInit();
             this.SuspendLayout();
             // 
             // txtAlfabeto
@@ -57,6 +58,7 @@ namespace MT
             this.txtAlfabeto.Name = "txtAlfabeto";
             this.txtAlfabeto.Size = new System.Drawing.Size(131, 20);
             this.txtAlfabeto.TabIndex = 0;
+            this.txtAlfabeto.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAlfabeto_KeyPress);
             // 
             // btnGuardarAlfabeto
             // 
@@ -70,6 +72,7 @@ namespace MT
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblInfoAlfabeto);
             this.groupBox1.Controls.Add(this.btnGuardarAlfabeto);
             this.groupBox1.Controls.Add(this.txtAlfabeto);
             this.groupBox1.Location = new System.Drawing.Point(23, 12);
@@ -79,19 +82,26 @@ namespace MT
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Alfabeto";
             // 
-            // groupBox2
+            // grpEstados
             // 
-            this.groupBox2.Controls.Add(this.txtEstado);
-            this.groupBox2.Controls.Add(this.btnTransiciones);
-            this.groupBox2.Controls.Add(this.btnEliminarEstado);
-            this.groupBox2.Controls.Add(this.lstEstados);
-            this.groupBox2.Controls.Add(this.btnAgregarEstado);
-            this.groupBox2.Location = new System.Drawing.Point(23, 115);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(265, 329);
-            this.groupBox2.TabIndex = 4;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Lista de estados";
+            this.grpEstados.Controls.Add(this.txtEstado);
+            this.grpEstados.Controls.Add(this.btnTransiciones);
+            this.grpEstados.Controls.Add(this.btnEliminarEstado);
+            this.grpEstados.Controls.Add(this.lstEstados);
+            this.grpEstados.Controls.Add(this.btnAgregarEstado);
+            this.grpEstados.Location = new System.Drawing.Point(23, 115);
+            this.grpEstados.Name = "grpEstados";
+            this.grpEstados.Size = new System.Drawing.Size(265, 329);
+            this.grpEstados.TabIndex = 4;
+            this.grpEstados.TabStop = false;
+            this.grpEstados.Text = "Lista de estados";
+            // 
+            // txtEstado
+            // 
+            this.txtEstado.Location = new System.Drawing.Point(17, 252);
+            this.txtEstado.Name = "txtEstado";
+            this.txtEstado.Size = new System.Drawing.Size(67, 20);
+            this.txtEstado.TabIndex = 4;
             // 
             // btnTransiciones
             // 
@@ -111,6 +121,7 @@ namespace MT
             this.btnEliminarEstado.TabIndex = 2;
             this.btnEliminarEstado.Text = "Eliminar";
             this.btnEliminarEstado.UseVisualStyleBackColor = true;
+            this.btnEliminarEstado.Click += new System.EventHandler(this.btnEliminarEstado_Click);
             // 
             // lstEstados
             // 
@@ -157,13 +168,13 @@ namespace MT
             this.txtCadena.Size = new System.Drawing.Size(131, 20);
             this.txtCadena.TabIndex = 0;
             // 
-            // dataGridView1
+            // dgMovimiento
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(320, 64);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(457, 482);
-            this.dataGridView1.TabIndex = 6;
+            this.dgMovimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgMovimiento.Location = new System.Drawing.Point(320, 64);
+            this.dgMovimiento.Name = "dgMovimiento";
+            this.dgMovimiento.Size = new System.Drawing.Size(457, 482);
+            this.dgMovimiento.TabIndex = 6;
             // 
             // btnEjecutarMaquina
             // 
@@ -183,6 +194,7 @@ namespace MT
             this.btnModificarCadena.TabIndex = 8;
             this.btnModificarCadena.Text = "Modificar Cadena";
             this.btnModificarCadena.UseVisualStyleBackColor = true;
+            this.btnModificarCadena.Click += new System.EventHandler(this.btnModificarCadena_Click);
             // 
             // btnEliminarMaquina
             // 
@@ -192,13 +204,17 @@ namespace MT
             this.btnEliminarMaquina.TabIndex = 9;
             this.btnEliminarMaquina.Text = "Eliminar Maquina";
             this.btnEliminarMaquina.UseVisualStyleBackColor = true;
+            this.btnEliminarMaquina.Click += new System.EventHandler(this.btnEliminarMaquina_Click);
             // 
-            // txtEstado
+            // lblInfoAlfabeto
             // 
-            this.txtEstado.Location = new System.Drawing.Point(17, 252);
-            this.txtEstado.Name = "txtEstado";
-            this.txtEstado.Size = new System.Drawing.Size(67, 20);
-            this.txtEstado.TabIndex = 4;
+            this.lblInfoAlfabeto.AutoSize = true;
+            this.lblInfoAlfabeto.ForeColor = System.Drawing.Color.Red;
+            this.lblInfoAlfabeto.Location = new System.Drawing.Point(17, 61);
+            this.lblInfoAlfabeto.Name = "lblInfoAlfabeto";
+            this.lblInfoAlfabeto.Size = new System.Drawing.Size(0, 13);
+            this.lblInfoAlfabeto.TabIndex = 3;
+            this.lblInfoAlfabeto.Visible = false;
             // 
             // frmMaquinaTuring
             // 
@@ -208,19 +224,20 @@ namespace MT
             this.Controls.Add(this.btnEliminarMaquina);
             this.Controls.Add(this.btnModificarCadena);
             this.Controls.Add(this.btnEjecutarMaquina);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgMovimiento);
             this.Controls.Add(this.grpCadena);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.grpEstados);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmMaquinaTuring";
             this.Text = "Maquina de Turing";
+            this.Load += new System.EventHandler(this.frmMaquinaTuring_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.grpEstados.ResumeLayout(false);
+            this.grpEstados.PerformLayout();
             this.grpCadena.ResumeLayout(false);
             this.grpCadena.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgMovimiento)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -230,7 +247,7 @@ namespace MT
         private System.Windows.Forms.TextBox txtAlfabeto;
         private System.Windows.Forms.Button btnGuardarAlfabeto;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox grpEstados;
         private System.Windows.Forms.Button btnEliminarEstado;
         private System.Windows.Forms.Button btnAgregarEstado;
         private System.Windows.Forms.ListBox lstEstados;
@@ -238,11 +255,12 @@ namespace MT
         private System.Windows.Forms.GroupBox grpCadena;
         private System.Windows.Forms.Button btnGuardarCadena;
         private System.Windows.Forms.TextBox txtCadena;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgMovimiento;
         private System.Windows.Forms.Button btnEjecutarMaquina;
         private System.Windows.Forms.Button btnModificarCadena;
         private System.Windows.Forms.Button btnEliminarMaquina;
         private System.Windows.Forms.TextBox txtEstado;
+        private System.Windows.Forms.Label lblInfoAlfabeto;
     }
 }
 
