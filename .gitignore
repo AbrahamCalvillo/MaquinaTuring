@@ -351,3 +351,7 @@ MigrationBackup/
 .vs/MT/v16/.suo
 obj/Debug/DesignTimeResolveAssemblyReferences.cache
 obj/Debug/MT.csprojAssemblyReference.cache
+.vs/MT/v16/.suo
+*.cache
+obj/Debug/DesignTimeResolveAssemblyReferences.cache
+obj/Debug/MT.csprojAssemblyReference.cache
