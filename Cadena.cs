@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MT
 {
-    class Cadena:IEquatable<Cadena>
+    public class Cadena:IEquatable<Cadena>
     {
         public int paso { get; set; }
         public string cadena { get; set; }

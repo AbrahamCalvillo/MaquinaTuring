@@ -9,6 +9,6 @@ namespace MT
     public class Estado:IEquatable<Estado>
     {
         public string Etiqueta { get; set; }
-        public bool Equals(Estado e) => this.etiqueta == e.etiqueta;
+        public bool Equals(Estado e) => this.Etiqueta == e.Etiqueta;
     }
 }

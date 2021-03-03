@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MT
 {
-    class Maquina
+    public class Maquina
     {
         public char[] Alfabeto { get; set; }
         public List<Estado> Estados { get; set; }
