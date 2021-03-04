@@ -142,8 +142,9 @@ namespace MT
             if (!msg.Equals("Ok"))
             {
                 MessageBox.Show("Info", msg);
-                MostrarListaEstados();
+               
             }
+            MostrarListaEstados();
         }
 
         private void txtAlfabeto_KeyPress(object sender, KeyPressEventArgs e)
