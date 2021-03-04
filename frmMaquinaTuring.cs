@@ -123,7 +123,7 @@ namespace MT
             string msg = maquina.AgregarEstado(new Estado() { Etiqueta = txtEstado.Text.Trim() });
             if (!msg.Equals("Ok"))
             {
-                MessageBox.Show("Info", msg);
+                MessageBox.Show(msg, "Info");
             }
             MostrarListaEstados();
         }
@@ -141,7 +141,7 @@ namespace MT
             string msg = maquina.EliminarEstado(new Estado() { Etiqueta = txtEstado.Text.Trim() });
             if (!msg.Equals("Ok"))
             {
-                MessageBox.Show("Info", msg);
+                MessageBox.Show(msg,"Info");
                
             }
             MostrarListaEstados();

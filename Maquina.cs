@@ -68,7 +68,7 @@ namespace MT
         public string EditarTransicion(Transicion oldT, Transicion newT)
         {
             string msg = "";
-            if (!ListaTransiciones.Contains(oldT))
+            if (ListaTransiciones.Contains(oldT))
             {
                 ListaTransiciones.Remove(oldT);
                 ListaTransiciones.Add(newT);

@@ -17,6 +17,7 @@ namespace MT
 
         private void frmTransiciones_Load(object sender, EventArgs e)
         {
+            //Metodo que carga los componentes
             cmbOperacion.DataSource = Enum.GetValues(typeof(Operaciones));
             cmbMovimiento.DataSource = Enum.GetValues(typeof(Movimientos));
 
@@ -46,20 +47,19 @@ namespace MT
             dgTransiciones.ReadOnly = true;
             dgTransiciones.AllowUserToAddRows = false;
             dgTransiciones.AllowUserToDeleteRows = false;
-            dgTransiciones.RowHeadersVisible = false;
             dgTransiciones.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             MostrarTransiciones();
         }
 
         private void btnAgregarTransicion_Click(object sender, EventArgs e)
         {
-
-            if (cmbEstado.SelectedItem != null && cmbEstadoSiguiente.SelectedItem != null &&
+            //Metodo que agrega una transicion
+            if (cmbEstado.SelectedItem != null && cmbEstadoSiguiente.SelectedItem != null && //Validacion de que los Combobox tengan informacion
                 cmbMovimiento.SelectedItem != null && cmbOperacion.SelectedItem != null &&
                 cmbSimboloLeido.SelectedItem != null && cmbSimboloNuevo.SelectedItem != null
                 )
             {
-                Transicion transicion = new Transicion()
+                Transicion transicion = new Transicion() //Se cra la transicion
                 {
                     q = cmbEstado.SelectedItem.ToString(),
                     ValorBuscado = char.Parse(cmbSimboloLeido.SelectedItem.ToString()),
@@ -68,7 +68,7 @@ namespace MT
                     ValorNuevo = char.Parse(cmbSimboloNuevo.SelectedItem.ToString()),
                     p = cmbEstadoSiguiente.SelectedItem.ToString()
                 };
-
+                //Evalua si la transicion ya existe  en la lista
                 if (maquina.ListaTransiciones.Contains(transicion))
                 {
                     MessageBox.Show("Informacion", "Ya existe una configuracion para el estado  y simbolo leido elegidos");
@@ -85,6 +85,7 @@ namespace MT
 
         void MostrarTransiciones()
         {
+            //Metodo que muestra las transiciones en la tabla
             dgTransiciones.Rows.Clear();
             maquina.ListaTransiciones.ForEach(t => dgTransiciones.Rows.Add(t.q, t.ValorBuscado, t.Operacion, t.ValorNuevo, t.p, t.Movimiento));
 
@@ -92,7 +93,7 @@ namespace MT
 
         private void btnEditarTransicion_Click(object sender, EventArgs e)
         {
-
+            //Metodo que edita una transicion
             if (cmbEstado.SelectedItem != null && cmbEstadoSiguiente.SelectedItem != null &&
                cmbMovimiento.SelectedItem != null && cmbOperacion.SelectedItem != null &&
                cmbSimboloLeido.SelectedItem != null && cmbSimboloNuevo.SelectedItem != null
@@ -109,9 +110,9 @@ namespace MT
                 };
 
                 string msg = maquina.EditarTransicion(transicionSeleccionada, transicion);
-                if (msg.Equals(msg))
+                if (msg.Equals("Ok"))
                 {
-                    MessageBox.Show("Informacion", msg);
+                    MessageBox.Show(msg,"Informacion" );
                 }
             }
             else
@@ -124,15 +125,16 @@ namespace MT
 
         private void btnEliminarTransicion_Click(object sender, EventArgs e)
         {
+            //Metodo que elimina la transicion
             if (cmbEstado.SelectedItem != null && cmbEstadoSiguiente.SelectedItem != null &&
                cmbMovimiento.SelectedItem != null && cmbOperacion.SelectedItem != null &&
                cmbSimboloLeido.SelectedItem != null && cmbSimboloNuevo.SelectedItem != null
                )
             {
                 string msg = maquina.EliminarTransicion(transicionSeleccionada);
-                if (msg.Equals(msg))
+                if (msg.Equals("Ok"))
                 {
-                    MessageBox.Show("Informacion", msg);
+                    MessageBox.Show(msg,"Informacion");
                 }
             }
             else
@@ -144,6 +146,7 @@ namespace MT
 
         private void dgTransiciones_SelectionChanged(object sender, EventArgs e)
         {
+            //Evento que detecta cuando el usuario selecciona una transicion de la tabla
             if (dgTransiciones.SelectedRows.Count == 0)
             {
                 return;

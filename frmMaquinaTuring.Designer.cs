@@ -49,6 +49,7 @@ namespace MT
             this.btnEjecutarMaquina = new System.Windows.Forms.Button();
             this.btnModificarCadena = new System.Windows.Forms.Button();
             this.btnEliminarMaquina = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.grpAlfabeto.SuspendLayout();
             this.grpEstados.SuspendLayout();
             this.grpCadena.SuspendLayout();
@@ -58,7 +59,7 @@ namespace MT
             // 
             // txtAlfabeto
             // 
-            this.txtAlfabeto.Location = new System.Drawing.Point(17, 37);
+            this.txtAlfabeto.Location = new System.Drawing.Point(17, 21);
             this.txtAlfabeto.Name = "txtAlfabeto";
             this.txtAlfabeto.Size = new System.Drawing.Size(131, 20);
             this.txtAlfabeto.TabIndex = 0;
@@ -66,7 +67,7 @@ namespace MT
             // 
             // btnGuardarAlfabeto
             // 
-            this.btnGuardarAlfabeto.Location = new System.Drawing.Point(172, 34);
+            this.btnGuardarAlfabeto.Location = new System.Drawing.Point(172, 18);
             this.btnGuardarAlfabeto.Name = "btnGuardarAlfabeto";
             this.btnGuardarAlfabeto.Size = new System.Drawing.Size(75, 23);
             this.btnGuardarAlfabeto.TabIndex = 2;
@@ -76,6 +77,7 @@ namespace MT
             // 
             // grpAlfabeto
             // 
+            this.grpAlfabeto.Controls.Add(this.label3);
             this.grpAlfabeto.Controls.Add(this.lblInfoAlfabeto);
             this.grpAlfabeto.Controls.Add(this.btnGuardarAlfabeto);
             this.grpAlfabeto.Controls.Add(this.txtAlfabeto);
@@ -90,7 +92,7 @@ namespace MT
             // 
             this.lblInfoAlfabeto.AutoSize = true;
             this.lblInfoAlfabeto.ForeColor = System.Drawing.Color.Red;
-            this.lblInfoAlfabeto.Location = new System.Drawing.Point(17, 61);
+            this.lblInfoAlfabeto.Location = new System.Drawing.Point(17, 45);
             this.lblInfoAlfabeto.Name = "lblInfoAlfabeto";
             this.lblInfoAlfabeto.Size = new System.Drawing.Size(0, 13);
             this.lblInfoAlfabeto.TabIndex = 3;
@@ -253,6 +255,15 @@ namespace MT
             this.btnEliminarMaquina.UseVisualStyleBackColor = true;
             this.btnEliminarMaquina.Click += new System.EventHandler(this.btnEliminarMaquina_Click);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(41, 62);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(212, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "ß= Espacio en blanco (alt + 225), * = Marca";
+            // 
             // frmMaquinaTuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -302,6 +313,7 @@ namespace MT
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown nudPosicionInicio;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label3;
     }
 }
 
