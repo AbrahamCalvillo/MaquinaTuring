@@ -2,4 +2,4 @@
 
 Maquina de turing para la materia de lenguajes y automatas I
 
-Fcha de entrega: 4 de marzo de 2021
+Fecha de entrega: 4 de marzo de 2021
