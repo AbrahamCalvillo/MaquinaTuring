@@ -31,7 +31,8 @@ namespace MT
         {
             this.txtAlfabeto = new System.Windows.Forms.TextBox();
             this.btnGuardarAlfabeto = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpAlfabeto = new System.Windows.Forms.GroupBox();
+            this.lblInfoAlfabeto = new System.Windows.Forms.Label();
             this.grpEstados = new System.Windows.Forms.GroupBox();
             this.txtEstado = new System.Windows.Forms.TextBox();
             this.btnTransiciones = new System.Windows.Forms.Button();
@@ -39,16 +40,19 @@ namespace MT
             this.lstEstados = new System.Windows.Forms.ListBox();
             this.btnAgregarEstado = new System.Windows.Forms.Button();
             this.grpCadena = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.nudPosicionInicio = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnGuardarCadena = new System.Windows.Forms.Button();
             this.txtCadena = new System.Windows.Forms.TextBox();
             this.dgMovimiento = new System.Windows.Forms.DataGridView();
             this.btnEjecutarMaquina = new System.Windows.Forms.Button();
             this.btnModificarCadena = new System.Windows.Forms.Button();
             this.btnEliminarMaquina = new System.Windows.Forms.Button();
-            this.lblInfoAlfabeto = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.grpAlfabeto.SuspendLayout();
             this.grpEstados.SuspendLayout();
             this.grpCadena.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPosicionInicio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgMovimiento)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,17 +74,27 @@ namespace MT
             this.btnGuardarAlfabeto.UseVisualStyleBackColor = true;
             this.btnGuardarAlfabeto.Click += new System.EventHandler(this.btnGuardarAlfabeto_Click);
             // 
-            // groupBox1
+            // grpAlfabeto
             // 
-            this.groupBox1.Controls.Add(this.lblInfoAlfabeto);
-            this.groupBox1.Controls.Add(this.btnGuardarAlfabeto);
-            this.groupBox1.Controls.Add(this.txtAlfabeto);
-            this.groupBox1.Location = new System.Drawing.Point(23, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(266, 88);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Alfabeto";
+            this.grpAlfabeto.Controls.Add(this.lblInfoAlfabeto);
+            this.grpAlfabeto.Controls.Add(this.btnGuardarAlfabeto);
+            this.grpAlfabeto.Controls.Add(this.txtAlfabeto);
+            this.grpAlfabeto.Location = new System.Drawing.Point(23, 12);
+            this.grpAlfabeto.Name = "grpAlfabeto";
+            this.grpAlfabeto.Size = new System.Drawing.Size(266, 88);
+            this.grpAlfabeto.TabIndex = 3;
+            this.grpAlfabeto.TabStop = false;
+            this.grpAlfabeto.Text = "Alfabeto";
+            // 
+            // lblInfoAlfabeto
+            // 
+            this.lblInfoAlfabeto.AutoSize = true;
+            this.lblInfoAlfabeto.ForeColor = System.Drawing.Color.Red;
+            this.lblInfoAlfabeto.Location = new System.Drawing.Point(17, 61);
+            this.lblInfoAlfabeto.Name = "lblInfoAlfabeto";
+            this.lblInfoAlfabeto.Size = new System.Drawing.Size(0, 13);
+            this.lblInfoAlfabeto.TabIndex = 3;
+            this.lblInfoAlfabeto.Visible = false;
             // 
             // grpEstados
             // 
@@ -91,21 +105,21 @@ namespace MT
             this.grpEstados.Controls.Add(this.btnAgregarEstado);
             this.grpEstados.Location = new System.Drawing.Point(23, 115);
             this.grpEstados.Name = "grpEstados";
-            this.grpEstados.Size = new System.Drawing.Size(265, 329);
+            this.grpEstados.Size = new System.Drawing.Size(265, 306);
             this.grpEstados.TabIndex = 4;
             this.grpEstados.TabStop = false;
             this.grpEstados.Text = "Lista de estados";
             // 
             // txtEstado
             // 
-            this.txtEstado.Location = new System.Drawing.Point(17, 252);
+            this.txtEstado.Location = new System.Drawing.Point(17, 241);
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.Size = new System.Drawing.Size(67, 20);
             this.txtEstado.TabIndex = 4;
             // 
             // btnTransiciones
             // 
-            this.btnTransiciones.Location = new System.Drawing.Point(16, 283);
+            this.btnTransiciones.Location = new System.Drawing.Point(16, 272);
             this.btnTransiciones.Name = "btnTransiciones";
             this.btnTransiciones.Size = new System.Drawing.Size(236, 23);
             this.btnTransiciones.TabIndex = 3;
@@ -115,7 +129,7 @@ namespace MT
             // 
             // btnEliminarEstado
             // 
-            this.btnEliminarEstado.Location = new System.Drawing.Point(171, 252);
+            this.btnEliminarEstado.Location = new System.Drawing.Point(171, 241);
             this.btnEliminarEstado.Name = "btnEliminarEstado";
             this.btnEliminarEstado.Size = new System.Drawing.Size(80, 23);
             this.btnEliminarEstado.TabIndex = 2;
@@ -126,14 +140,14 @@ namespace MT
             // lstEstados
             // 
             this.lstEstados.FormattingEnabled = true;
-            this.lstEstados.Location = new System.Drawing.Point(16, 30);
+            this.lstEstados.Location = new System.Drawing.Point(16, 19);
             this.lstEstados.Name = "lstEstados";
             this.lstEstados.Size = new System.Drawing.Size(235, 212);
             this.lstEstados.TabIndex = 0;
             // 
             // btnAgregarEstado
             // 
-            this.btnAgregarEstado.Location = new System.Drawing.Point(90, 252);
+            this.btnAgregarEstado.Location = new System.Drawing.Point(90, 241);
             this.btnAgregarEstado.Name = "btnAgregarEstado";
             this.btnAgregarEstado.Size = new System.Drawing.Size(75, 23);
             this.btnAgregarEstado.TabIndex = 1;
@@ -143,33 +157,66 @@ namespace MT
             // 
             // grpCadena
             // 
+            this.grpCadena.Controls.Add(this.label2);
+            this.grpCadena.Controls.Add(this.nudPosicionInicio);
+            this.grpCadena.Controls.Add(this.label1);
             this.grpCadena.Controls.Add(this.btnGuardarCadena);
             this.grpCadena.Controls.Add(this.txtCadena);
-            this.grpCadena.Location = new System.Drawing.Point(22, 459);
+            this.grpCadena.Location = new System.Drawing.Point(22, 427);
             this.grpCadena.Name = "grpCadena";
-            this.grpCadena.Size = new System.Drawing.Size(266, 88);
+            this.grpCadena.Size = new System.Drawing.Size(266, 120);
             this.grpCadena.TabIndex = 5;
             this.grpCadena.TabStop = false;
-            this.grpCadena.Text = "Cadena";
+            this.grpCadena.Text = "Configuracion de Inicio";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 74);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Posicion Inicio";
+            // 
+            // nudPosicionInicio
+            // 
+            this.nudPosicionInicio.Location = new System.Drawing.Point(97, 72);
+            this.nudPosicionInicio.Name = "nudPosicionInicio";
+            this.nudPosicionInicio.Size = new System.Drawing.Size(54, 20);
+            this.nudPosicionInicio.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(47, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Cadena";
             // 
             // btnGuardarCadena
             // 
-            this.btnGuardarCadena.Location = new System.Drawing.Point(172, 34);
+            this.btnGuardarCadena.Location = new System.Drawing.Point(172, 69);
             this.btnGuardarCadena.Name = "btnGuardarCadena";
             this.btnGuardarCadena.Size = new System.Drawing.Size(75, 23);
             this.btnGuardarCadena.TabIndex = 2;
             this.btnGuardarCadena.Text = "Guardar";
             this.btnGuardarCadena.UseVisualStyleBackColor = true;
+            this.btnGuardarCadena.Click += new System.EventHandler(this.btnGuardarCadena_Click);
             // 
             // txtCadena
             // 
-            this.txtCadena.Location = new System.Drawing.Point(17, 37);
+            this.txtCadena.Location = new System.Drawing.Point(97, 35);
             this.txtCadena.Name = "txtCadena";
-            this.txtCadena.Size = new System.Drawing.Size(131, 20);
+            this.txtCadena.Size = new System.Drawing.Size(150, 20);
             this.txtCadena.TabIndex = 0;
+            this.txtCadena.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCadena_KeyPress);
             // 
             // dgMovimiento
             // 
+            this.dgMovimiento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgMovimiento.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMovimiento.Location = new System.Drawing.Point(320, 64);
             this.dgMovimiento.Name = "dgMovimiento";
@@ -206,16 +253,6 @@ namespace MT
             this.btnEliminarMaquina.UseVisualStyleBackColor = true;
             this.btnEliminarMaquina.Click += new System.EventHandler(this.btnEliminarMaquina_Click);
             // 
-            // lblInfoAlfabeto
-            // 
-            this.lblInfoAlfabeto.AutoSize = true;
-            this.lblInfoAlfabeto.ForeColor = System.Drawing.Color.Red;
-            this.lblInfoAlfabeto.Location = new System.Drawing.Point(17, 61);
-            this.lblInfoAlfabeto.Name = "lblInfoAlfabeto";
-            this.lblInfoAlfabeto.Size = new System.Drawing.Size(0, 13);
-            this.lblInfoAlfabeto.TabIndex = 3;
-            this.lblInfoAlfabeto.Visible = false;
-            // 
             // frmMaquinaTuring
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -227,16 +264,17 @@ namespace MT
             this.Controls.Add(this.dgMovimiento);
             this.Controls.Add(this.grpCadena);
             this.Controls.Add(this.grpEstados);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.grpAlfabeto);
             this.Name = "frmMaquinaTuring";
             this.Text = "Maquina de Turing";
             this.Load += new System.EventHandler(this.frmMaquinaTuring_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpAlfabeto.ResumeLayout(false);
+            this.grpAlfabeto.PerformLayout();
             this.grpEstados.ResumeLayout(false);
             this.grpEstados.PerformLayout();
             this.grpCadena.ResumeLayout(false);
             this.grpCadena.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudPosicionInicio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgMovimiento)).EndInit();
             this.ResumeLayout(false);
 
@@ -246,7 +284,7 @@ namespace MT
 
         private System.Windows.Forms.TextBox txtAlfabeto;
         private System.Windows.Forms.Button btnGuardarAlfabeto;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpAlfabeto;
         private System.Windows.Forms.GroupBox grpEstados;
         private System.Windows.Forms.Button btnEliminarEstado;
         private System.Windows.Forms.Button btnAgregarEstado;
@@ -261,6 +299,9 @@ namespace MT
         private System.Windows.Forms.Button btnEliminarMaquina;
         private System.Windows.Forms.TextBox txtEstado;
         private System.Windows.Forms.Label lblInfoAlfabeto;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown nudPosicionInicio;
+        private System.Windows.Forms.Label label1;
     }
 }
 

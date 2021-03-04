@@ -51,10 +51,10 @@ namespace MT
             }
             return msg;
         }
-        public string AgregarTransicion(Estado e, Transicion t)
+        public string AgregarTransicion(Transicion t)
         {
             string msg = "";
-            if (Estados.Contains(e) && !ListaTransiciones.Contains(t))
+            if (!ListaTransiciones.Contains(t))
             {
                 ListaTransiciones.Add(t);
                 msg = "Ok";
@@ -65,10 +65,26 @@ namespace MT
             }
             return msg;
         }
-        public string EliminarTransicion(Estado e, Transicion t)
+        public string EditarTransicion(Transicion oldT , Transicion newT)
         {
             string msg = "";
-            if (Estados.Contains(e) && !ListaTransiciones.Contains(t))
+            if (!ListaTransiciones.Contains(oldT))
+            {
+                ListaTransiciones.Remove(oldT);                
+                ListaTransiciones.Add(newT);
+                
+                msg = "Ok";
+            }
+            else
+            {
+                msg = "Error al editar la transicion: No existe la transicion que se intenta editar";
+            }
+            return msg;
+        }
+        public string EliminarTransicion(Transicion t)
+        {
+            string msg = "";
+            if (ListaTransiciones.Contains(t))
             {
                 ListaTransiciones.Remove(t);
                 msg = "Ok";

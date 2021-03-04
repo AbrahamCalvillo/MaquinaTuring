@@ -21,26 +21,88 @@ namespace MT
         }
         private void frmMaquinaTuring_Load(object sender, EventArgs e)
         {
-
+            ControlDeAccesoCompontentes(0);
+            dgMovimiento.ReadOnly = true;
+            dgMovimiento.AllowUserToAddRows = false;
+            dgMovimiento.AllowUserToDeleteRows = false;
+            dgMovimiento.RowHeadersVisible = false;
+            dgMovimiento.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
         private void btnGuardarAlfabeto_Click(object sender, EventArgs e)
         {
             //Metodo que guarda el alfabeto capturado
             maquina.Alfabeto = txtAlfabeto.Text.Trim().ToCharArray();
-
+            ControlDeAccesoCompontentes(1);
+            MostrarListaEstados();
         }
 
         private void btnEjecutarMaquina_Click(object sender, EventArgs e)
         {
             //ToDo: Metodo que ejecuta la maquina
+            ControlDeAccesoCompontentes(3);
+            int c = maquina.PosicionInicial;
+            string estado = maquina.EstadoInicial;
+            char simboloLeido=' ';
+            string cadena = maquina.Cadena;
+            int paso = 1;
+            bool continua = true;
+            string msg = "";
+            do
+            {
+                if (estado.Equals(maquina.EstadoFinal))
+                {
+                    Movimiento mov = new Movimiento() { Paso = paso, Cadena = cadena, PosicionCabezal = c };
+                    maquina.Movimientos.Add(mov);
+                    continua = false;
+                    msg = "La maquina llego a un estado de aceptacion";
+                }
+                else
+                {
+                    Movimiento mov = new Movimiento() { Paso = paso, Cadena = cadena, PosicionCabezal = c };
+                    simboloLeido = cadena.ToCharArray()[c];
+                    var transicionesDisponibles = maquina.ListaTransiciones.FindAll(t => t.q.Equals(estado) && simboloLeido.Equals(simboloLeido));
+                    if (transicionesDisponibles.Count == 0)
+                    {
+                        //Si el estado actual no tiene transiciones para el simbolo leido tendra un problema.
+                        continua = false;
+                        msg = "La maquina no encontro una transicion para el estado actual y el simbolo leido";
+                    }
+                    else
+                    {
+                        mov.Transicion = transicionesDisponibles.Find(t => t.q.Equals(estado) &&t.ValorBuscado.Equals(simboloLeido));
+                        estado = mov.Transicion.p;
+                        var array = mov.Cadena.ToCharArray();
+                        switch (mov.Transicion.Operacion)
+                        {
+                            case Operaciones.Escribir:
+                                array[c] = mov.Transicion.ValorNuevo;                                
+                                break;
+                            case Operaciones.Borrar:                                
+                                array[c] = maquina.EspacioBlanco;                                
+                                break;
+                        }
+                        Console.WriteLine(new string(array));                       
+                        cadena = mov.Cadena;
+                        c += mov.Transicion.Movimiento == Movimientos.Derecha ? 1 : mov.Transicion.Movimiento == Movimientos.Izquierda ? -1 : 0;
+                        maquina.Movimientos.Add(mov);
+                        paso++;
+                    }
 
+                }
+                } while (continua) ;
+            MessageBox.Show("info", msg);
+            ActualizarMovimientos();
+            ControlDeAccesoCompontentes(2);
         }
 
         private void btnTransiciones_Click(object sender, EventArgs e)
         {
             //Metodo que abre el form de transiciones
             frmTransiciones frmTransiciones = new frmTransiciones(m: maquina);
-            frmTransiciones.Show();
+
+            frmTransiciones.ShowDialog();
+            maquina = frmTransiciones.maquina;
+            frmTransiciones.Dispose();
         }
 
         private void btnAgregarEstado_Click(object sender, EventArgs e)
@@ -109,14 +171,15 @@ namespace MT
         private void btnModificarCadena_Click(object sender, EventArgs e)
         {
             //Metodo que elimina la cadena
-            maquina.Cadena = txtCadena.Text.Trim();
-
+            dgMovimiento = new DataGridView();
+            grpCadena.Enabled = true;
         }
 
         private void btnEliminarMaquina_Click(object sender, EventArgs e)
         {
             //Metodo que elimina la configuracion actual de la MT
             maquina = new Maquina();
+            dgMovimiento = new DataGridView();
         }
         void ControlDeAccesoCompontentes(int indicacion) {
         //Metodo que controla la accesibilidad de los componentes en pantalla
@@ -124,14 +187,42 @@ namespace MT
             switch(indicacion)
             {
                 case 0:
+                    //Antes de capturar el alfabeto
                     grpCadena.Enabled = false;
                     grpEstados.Enabled = false;
+                    btnEjecutarMaquina.Enabled = false;
+                    btnModificarCadena.Enabled = false;
                     break;
-                case 1: break;
-                case 2: break;
-                case 3: break;
-                case 4: break;
-               default: break;
+                case 1:
+                    //Despues de capturar el alfabeto
+                    grpCadena.Enabled = true;
+                    grpEstados.Enabled = true;
+                    grpAlfabeto.Enabled = false;
+                    btnEjecutarMaquina.Enabled = false;
+                    btnModificarCadena.Enabled = false;
+                    break;
+                case 2:
+                    //Despues capturar la cadena
+                    grpCadena.Enabled = false;
+                    grpEstados.Enabled = true;
+                    grpAlfabeto.Enabled=false;
+                    btnEjecutarMaquina.Enabled = true;
+                    btnModificarCadena.Enabled = true;
+                    break;
+                case 3:
+                    //Al ejecutar la MT
+                    grpCadena.Enabled = false;
+                    grpEstados.Enabled = false;
+                    grpAlfabeto.Enabled = false;
+                    btnEjecutarMaquina.Enabled = false;
+                    btnModificarCadena.Enabled = false;
+                    break;
+               default:
+                    grpCadena.Enabled = true;
+                    grpEstados.Enabled = true;
+                    btnEjecutarMaquina.Enabled = true;
+                    btnModificarCadena.Enabled = true; 
+                    break;
             }
            
         }
@@ -155,24 +246,66 @@ namespace MT
             foreach (Movimiento mov in maquina.Movimientos)
             {
                 DataGridViewRow dr = new DataGridViewRow();
-                dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.paso});
-                char[] cadena = mov.cadena.ToCharArray();
-
+                dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Paso });
+                char[] cadena = mov.Cadena.ToCharArray();
                 for (int i = 0; i < cadena.Length; i++)
                 {
-                    DataGridViewCell cell = new DataGridViewTextBoxCell();
-                    cell.Value = cadena[i];
-                    cell.Style.BackColor = i == mov.PosicionCabezal ? Color.Red : Color.White;
-                    dr.Cells.Add(dataGridViewCell: cell);
+                    DataGridViewCellStyle style = new DataGridViewCellStyle();
+                    style.BackColor = i == mov.PosicionCabezal ? Color.Red : Color.White;
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = cadena[i],Style=style });               
                 }
-                dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.transicion.q });
-                dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.transicion.ValorBuscado });
-                dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.transicion.ValorNuevo });
-                dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.transicion.p });
-                dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.transicion.Movimiento.ToString()});
-                dgMovimiento.Rows.Add(dr);
+                if (mov.Transicion is null) {
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = "qf" });
+                    dgMovimiento.Rows.Add(dr); }
+                else {
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.q });
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.ValorBuscado });
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.ValorNuevo });
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.p });
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.Movimiento.ToString() });
+                    dgMovimiento.Rows.Add(dr);
+                }
+                            
             }        
         }
-     
+
+        private void btnGuardarCadena_Click(object sender, EventArgs e)
+        {
+            maquina.Cadena = txtCadena.Text.Trim();
+            maquina.PosicionInicial = int.Parse(nudPosicionInicio.Value.ToString());
+            ControlDeAccesoCompontentes(2);
+        }
+
+        private void txtCadena_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyChar == (char)Keys.Space)
+            {
+                e.Handled = true;
+            }
+            else if (e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == maquina.EspacioBlanco)
+            {
+                e.Handled = false;
+            }
+            else if (e.KeyChar == maquina.Marca)
+            {
+                e.Handled = false;
+            }
+            else if (maquina.Alfabeto.Contains(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

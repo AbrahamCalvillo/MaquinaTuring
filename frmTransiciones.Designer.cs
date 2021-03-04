@@ -31,6 +31,8 @@ namespace MT
         {
             this.dgTransiciones = new System.Windows.Forms.DataGridView();
             this.grpTransiciones = new System.Windows.Forms.GroupBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cmbSimboloNuevo = new System.Windows.Forms.ComboBox();
             this.btnEditarTransicion = new System.Windows.Forms.Button();
             this.btnEliminarTransicion = new System.Windows.Forms.Button();
             this.btnAgregarTransicion = new System.Windows.Forms.Button();
@@ -55,9 +57,12 @@ namespace MT
             this.dgTransiciones.Name = "dgTransiciones";
             this.dgTransiciones.Size = new System.Drawing.Size(587, 417);
             this.dgTransiciones.TabIndex = 0;
+            this.dgTransiciones.SelectionChanged += new System.EventHandler(this.dgTransiciones_SelectionChanged);
             // 
             // grpTransiciones
             // 
+            this.grpTransiciones.Controls.Add(this.label6);
+            this.grpTransiciones.Controls.Add(this.cmbSimboloNuevo);
             this.grpTransiciones.Controls.Add(this.btnEditarTransicion);
             this.grpTransiciones.Controls.Add(this.btnEliminarTransicion);
             this.grpTransiciones.Controls.Add(this.btnAgregarTransicion);
@@ -78,6 +83,23 @@ namespace MT
             this.grpTransiciones.TabStop = false;
             this.grpTransiciones.Text = "Transiciones";
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(21, 161);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(77, 13);
+            this.label6.TabIndex = 14;
+            this.label6.Text = "Simbolo nuevo";
+            // 
+            // cmbSimboloNuevo
+            // 
+            this.cmbSimboloNuevo.FormattingEnabled = true;
+            this.cmbSimboloNuevo.Location = new System.Drawing.Point(21, 180);
+            this.cmbSimboloNuevo.Name = "cmbSimboloNuevo";
+            this.cmbSimboloNuevo.Size = new System.Drawing.Size(121, 21);
+            this.cmbSimboloNuevo.TabIndex = 13;
+            // 
             // btnEditarTransicion
             // 
             this.btnEditarTransicion.Location = new System.Drawing.Point(21, 352);
@@ -86,6 +108,7 @@ namespace MT
             this.btnEditarTransicion.TabIndex = 12;
             this.btnEditarTransicion.Text = "Editar";
             this.btnEditarTransicion.UseVisualStyleBackColor = true;
+            this.btnEditarTransicion.Click += new System.EventHandler(this.btnEditarTransicion_Click);
             // 
             // btnEliminarTransicion
             // 
@@ -95,6 +118,7 @@ namespace MT
             this.btnEliminarTransicion.TabIndex = 11;
             this.btnEliminarTransicion.Text = "Eliminar";
             this.btnEliminarTransicion.UseVisualStyleBackColor = true;
+            this.btnEliminarTransicion.Click += new System.EventHandler(this.btnEliminarTransicion_Click);
             // 
             // btnAgregarTransicion
             // 
@@ -104,11 +128,12 @@ namespace MT
             this.btnAgregarTransicion.TabIndex = 10;
             this.btnAgregarTransicion.Text = "Agregar";
             this.btnAgregarTransicion.UseVisualStyleBackColor = true;
+            this.btnAgregarTransicion.Click += new System.EventHandler(this.btnAgregarTransicion_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(21, 178);
+            this.label5.Location = new System.Drawing.Point(21, 204);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 9;
@@ -117,7 +142,7 @@ namespace MT
             // cmbMovimiento
             // 
             this.cmbMovimiento.FormattingEnabled = true;
-            this.cmbMovimiento.Location = new System.Drawing.Point(21, 197);
+            this.cmbMovimiento.Location = new System.Drawing.Point(21, 223);
             this.cmbMovimiento.Name = "cmbMovimiento";
             this.cmbMovimiento.Size = new System.Drawing.Size(121, 21);
             this.cmbMovimiento.TabIndex = 8;
@@ -125,7 +150,7 @@ namespace MT
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 127);
+            this.label4.Location = new System.Drawing.Point(21, 117);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 7;
@@ -134,7 +159,7 @@ namespace MT
             // cmbOperacion
             // 
             this.cmbOperacion.FormattingEnabled = true;
-            this.cmbOperacion.Location = new System.Drawing.Point(21, 146);
+            this.cmbOperacion.Location = new System.Drawing.Point(21, 137);
             this.cmbOperacion.Name = "cmbOperacion";
             this.cmbOperacion.Size = new System.Drawing.Size(121, 21);
             this.cmbOperacion.TabIndex = 6;
@@ -142,7 +167,7 @@ namespace MT
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 79);
+            this.label3.Location = new System.Drawing.Point(21, 69);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(69, 13);
             this.label3.TabIndex = 5;
@@ -151,7 +176,7 @@ namespace MT
             // cmbSimboloLeido
             // 
             this.cmbSimboloLeido.FormattingEnabled = true;
-            this.cmbSimboloLeido.Location = new System.Drawing.Point(21, 98);
+            this.cmbSimboloLeido.Location = new System.Drawing.Point(21, 88);
             this.cmbSimboloLeido.Name = "cmbSimboloLeido";
             this.cmbSimboloLeido.Size = new System.Drawing.Size(121, 21);
             this.cmbSimboloLeido.TabIndex = 4;
@@ -159,7 +184,7 @@ namespace MT
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 233);
+            this.label2.Location = new System.Drawing.Point(21, 247);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 13);
             this.label2.TabIndex = 3;
@@ -168,7 +193,7 @@ namespace MT
             // cmbEstadoSiguiente
             // 
             this.cmbEstadoSiguiente.FormattingEnabled = true;
-            this.cmbEstadoSiguiente.Location = new System.Drawing.Point(21, 252);
+            this.cmbEstadoSiguiente.Location = new System.Drawing.Point(21, 266);
             this.cmbEstadoSiguiente.Name = "cmbEstadoSiguiente";
             this.cmbEstadoSiguiente.Size = new System.Drawing.Size(121, 21);
             this.cmbEstadoSiguiente.TabIndex = 2;
@@ -176,7 +201,7 @@ namespace MT
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(21, 25);
+            this.label1.Location = new System.Drawing.Point(21, 26);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(43, 13);
             this.label1.TabIndex = 1;
@@ -185,7 +210,7 @@ namespace MT
             // cmbEstado
             // 
             this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(21, 44);
+            this.cmbEstado.Location = new System.Drawing.Point(21, 45);
             this.cmbEstado.Name = "cmbEstado";
             this.cmbEstado.Size = new System.Drawing.Size(121, 21);
             this.cmbEstado.TabIndex = 0;
@@ -224,5 +249,7 @@ namespace MT
         private System.Windows.Forms.ComboBox cmbEstadoSiguiente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cmbSimboloNuevo;
     }
 }
