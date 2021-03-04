@@ -65,14 +65,14 @@ namespace MT
             }
             return msg;
         }
-        public string EditarTransicion(Transicion oldT , Transicion newT)
+        public string EditarTransicion(Transicion oldT, Transicion newT)
         {
             string msg = "";
             if (!ListaTransiciones.Contains(oldT))
             {
-                ListaTransiciones.Remove(oldT);                
+                ListaTransiciones.Remove(oldT);
                 ListaTransiciones.Add(newT);
-                
+
                 msg = "Ok";
             }
             else

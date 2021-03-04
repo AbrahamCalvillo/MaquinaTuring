@@ -7,7 +7,6 @@ namespace MT
 {
     public partial class frmMaquinaTuring : Form
     {
-
         Maquina maquina;
 
         public frmMaquinaTuring()
@@ -42,55 +41,68 @@ namespace MT
             ControlDeAccesoCompontentes(3);
             int c = maquina.PosicionInicial;
             string estado = maquina.EstadoInicial;
-            char simboloLeido=' ';
+            char simboloLeido = ' ';
             string cadena = maquina.Cadena;
             int paso = 1;
             bool continua = true;
             string msg = "";
-            do
+            try
             {
-                if (estado.Equals(maquina.EstadoFinal))
+                do
                 {
-                    Movimiento mov = new Movimiento() { Paso = paso, Cadena = cadena, PosicionCabezal = c };
-                    maquina.Movimientos.Add(mov);
-                    continua = false;
-                    msg = "La maquina llego a un estado de aceptacion";
-                }
-                else
-                {
-                    Movimiento mov = new Movimiento() { Paso = paso, Cadena = cadena, PosicionCabezal = c };
-                    simboloLeido = cadena.ToCharArray()[c];
-                    var transicionesDisponibles = maquina.ListaTransiciones.FindAll(t => t.q.Equals(estado) && simboloLeido.Equals(simboloLeido));
-                    if (transicionesDisponibles.Count == 0)
+                    if (c == -1)
                     {
-                        //Si el estado actual no tiene transiciones para el simbolo leido tendra un problema.
                         continua = false;
-                        msg = "La maquina no encontro una transicion para el estado actual y el simbolo leido";
+                        msg = "La maquina presenta un problema de parada anormal";
+                    }
+                    else if (estado.Equals(maquina.EstadoFinal))
+                    {
+                        Movimiento mov = new Movimiento() { Paso = paso, Cadena = cadena, PosicionCabezal = c };
+                        maquina.Movimientos.Add(mov);
+                        continua = false;
+                        msg = "La maquina llego a un estado de aceptacion";
                     }
                     else
                     {
-                        mov.Transicion = transicionesDisponibles.Find(t => t.q.Equals(estado) &&t.ValorBuscado.Equals(simboloLeido));
-                        estado = mov.Transicion.p;
-                        var array = mov.Cadena.ToCharArray();
-                        switch (mov.Transicion.Operacion)
-                        {
-                            case Operaciones.Escribir:
-                                array[c] = mov.Transicion.ValorNuevo;                                
-                                break;
-                            case Operaciones.Borrar:                                
-                                array[c] = maquina.EspacioBlanco;                                
-                                break;
-                        }
-                        Console.WriteLine(new string(array));                       
-                        cadena = mov.Cadena;
-                        c += mov.Transicion.Movimiento == Movimientos.Derecha ? 1 : mov.Transicion.Movimiento == Movimientos.Izquierda ? -1 : 0;
-                        maquina.Movimientos.Add(mov);
-                        paso++;
-                    }
+                        Movimiento mov = new Movimiento() { Paso = paso, Cadena = cadena, PosicionCabezal = c };
 
-                }
-                } while (continua) ;
-            MessageBox.Show("info", msg);
+                        simboloLeido = cadena.ToCharArray()[c];
+
+                        var transicionesDisponibles = maquina.ListaTransiciones.FindAll(t => t.q.Equals(estado) && simboloLeido.Equals(simboloLeido));
+                        if (transicionesDisponibles.Count == 0)
+                        {
+                            //Si el estado actual no tiene transiciones para el simbolo leido tendra un problema.
+                            continua = false;
+                            msg = "La maquina no encontro una transicion para el estado actual y el simbolo leido";
+                        }
+                        else
+                        {
+                            mov.Transicion = transicionesDisponibles.Find(t => t.q.Equals(estado) && t.ValorBuscado.Equals(simboloLeido));
+                            estado = mov.Transicion.p;
+                            var array = mov.Cadena.ToCharArray();
+                            switch (mov.Transicion.Operacion)
+                            {
+                                case Operaciones.Escribir:
+                                    array[c] = mov.Transicion.ValorNuevo;
+                                    break;
+                                case Operaciones.Borrar:
+                                    array[c] = maquina.EspacioBlanco;
+                                    break;
+                            }
+                            Console.WriteLine(new string(array));
+                            cadena = new string(array);
+                            c += mov.Transicion.Movimiento == Movimientos.Derecha ? 1 : mov.Transicion.Movimiento == Movimientos.Izquierda ? -1 : 0;
+                            maquina.Movimientos.Add(mov);
+                            paso++;
+                        }
+                    }
+                } while (continua);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                msg = "La maquina presenta un problema de parada para esta cadena";
+            }
+            MessageBox.Show(msg, "info");
             ActualizarMovimientos();
             ControlDeAccesoCompontentes(2);
         }
@@ -171,27 +183,33 @@ namespace MT
         private void btnModificarCadena_Click(object sender, EventArgs e)
         {
             //Metodo que elimina la cadena
-            dgMovimiento = new DataGridView();
+            dgMovimiento.Columns.Clear();
+            maquina.Movimientos.Clear();
             grpCadena.Enabled = true;
+            ControlDeAccesoCompontentes(1);
         }
 
         private void btnEliminarMaquina_Click(object sender, EventArgs e)
         {
             //Metodo que elimina la configuracion actual de la MT
             maquina = new Maquina();
-            dgMovimiento = new DataGridView();
+            dgMovimiento.Columns.Clear();
+            ControlDeAccesoCompontentes(0);
         }
-        void ControlDeAccesoCompontentes(int indicacion) {
-        //Metodo que controla la accesibilidad de los componentes en pantalla
-        //ToDo: Completar la funcionalidad
-            switch(indicacion)
+        void ControlDeAccesoCompontentes(int indicacion)
+        {
+            //Metodo que controla la accesibilidad de los componentes en pantalla
+            switch (indicacion)
             {
                 case 0:
                     //Antes de capturar el alfabeto
+                    grpAlfabeto.Enabled = true;
                     grpCadena.Enabled = false;
                     grpEstados.Enabled = false;
                     btnEjecutarMaquina.Enabled = false;
                     btnModificarCadena.Enabled = false;
+                    txtCadena.Text = "";
+                    nudPosicionInicio.Value = 0;
                     break;
                 case 1:
                     //Despues de capturar el alfabeto
@@ -205,7 +223,7 @@ namespace MT
                     //Despues capturar la cadena
                     grpCadena.Enabled = false;
                     grpEstados.Enabled = true;
-                    grpAlfabeto.Enabled=false;
+                    grpAlfabeto.Enabled = false;
                     btnEjecutarMaquina.Enabled = true;
                     btnModificarCadena.Enabled = true;
                     break;
@@ -217,20 +235,22 @@ namespace MT
                     btnEjecutarMaquina.Enabled = false;
                     btnModificarCadena.Enabled = false;
                     break;
-               default:
+                default:
                     grpCadena.Enabled = true;
                     grpEstados.Enabled = true;
                     btnEjecutarMaquina.Enabled = true;
-                    btnModificarCadena.Enabled = true; 
+                    btnModificarCadena.Enabled = true;
                     break;
             }
-           
+
         }
 
-        void ActualizarMovimientos() {
+        void ActualizarMovimientos()
+        {
             //Metodo que muestra en dgMovimientos las operaciones realizadas por la maquina 
 
-            if (dgMovimiento.Columns.Count == 0) {
+            if (dgMovimiento.Columns.Count == 0)
+            {
                 dgMovimiento.Columns.Add("No", "No.");
                 for (int i = 0; i < maquina.Cadena.Length; i++)
                 {
@@ -252,12 +272,15 @@ namespace MT
                 {
                     DataGridViewCellStyle style = new DataGridViewCellStyle();
                     style.BackColor = i == mov.PosicionCabezal ? Color.Red : Color.White;
-                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = cadena[i],Style=style });               
+                    dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = cadena[i], Style = style });
                 }
-                if (mov.Transicion is null) {
+                if (mov.Transicion is null)
+                {
                     dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = "qf" });
-                    dgMovimiento.Rows.Add(dr); }
-                else {
+                    dgMovimiento.Rows.Add(dr);
+                }
+                else
+                {
                     dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.q });
                     dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.ValorBuscado });
                     dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.ValorNuevo });
@@ -265,8 +288,8 @@ namespace MT
                     dr.Cells.Add(dataGridViewCell: new DataGridViewTextBoxCell() { Value = mov.Transicion.Movimiento.ToString() });
                     dgMovimiento.Rows.Add(dr);
                 }
-                            
-            }        
+
+            }
         }
 
         private void btnGuardarCadena_Click(object sender, EventArgs e)
