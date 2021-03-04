@@ -11,9 +11,10 @@ namespace MT
 
         public frmMaquinaTuring()
         {
-            maquina = new Maquina();
-            maquina.EstadoInicial = "q0";
-            maquina.EstadoFinal = "qf";
+            maquina = new Maquina() {
+                EstadoInicial = "q0",
+            EstadoFinal = "qf",
+        };
             maquina.AgregarEstado(new Estado() { Etiqueta = "q0" });
             maquina.AgregarEstado(new Estado() { Etiqueta = "qf" });
             InitializeComponent();
@@ -193,7 +194,13 @@ namespace MT
         private void btnEliminarMaquina_Click(object sender, EventArgs e)
         {
             //Metodo que elimina la configuracion actual de la MT
-            maquina = new Maquina();
+            maquina = new Maquina()
+            {
+                EstadoInicial = "q0",
+                EstadoFinal = "qf",
+            };
+            maquina.AgregarEstado(new Estado() { Etiqueta = "q0" });
+            maquina.AgregarEstado(new Estado() { Etiqueta = "qf" });
             dgMovimiento.Columns.Clear();
             ControlDeAccesoCompontentes(0);
         }
