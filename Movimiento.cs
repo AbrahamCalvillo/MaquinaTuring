@@ -2,6 +2,7 @@
 
 namespace MT
 {
+    //Clase que representa un movimiento durante los calculos de la maquina
     public class Movimiento : IEquatable<Movimiento>
     {
         public int Paso { get; set; }
